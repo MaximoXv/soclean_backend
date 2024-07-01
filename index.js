@@ -1,7 +1,8 @@
 const express = require("express");
 const app = express();
 const clientesRouter = require("./routes/clientes.router.js");
-import "dotenv/config"; //quizas esto no funciona
+const dotenv = require('dotenv');
+dotenv.config();
 
 const path = require("path");
 
