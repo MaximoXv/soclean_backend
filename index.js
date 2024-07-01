@@ -1,10 +1,13 @@
 const express = require("express");
 const app = express();
 const clientesRouter = require("./routes/clientes.router.js");
+import "dotenv/config"; //quizas esto no funciona
 
 const path = require("path");
 
-// Middleware para archivos estáticos y públicos
+const PORT = process.env.MYSQL_ADDON_PORT || 3000;
+
+
 app.use(express.static(path.join(__dirname, "public")));
 
 app.use(express.urlencoded({ extended: false}))
@@ -13,8 +16,7 @@ app.use(express.json());
 
 app.use("/clientes",clientesRouter)
 
-// Ruta principal, la pagina de inicio
-// http://localhost:3000/
+
 app.get("/", (req, res) => {
   res.send("Hola Express");
 });
@@ -22,6 +24,5 @@ app.get("/", (req, res) => {
 
 
 
-const PORT = 3000;
 
 app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
